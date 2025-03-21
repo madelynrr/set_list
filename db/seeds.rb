@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Song.destroy_all
+Artist.destroy_all
+
+artist_1 = Artist.create(name: "Glass Animals")
+artist_2 = Artist.create(name: "Taylor Swift")
+
+Song.create(title: "Show Pony",
+            length: 208,
+            play_count: 12345,
+            artist: artist_1)
+Song.create(title: "Peter",
+            length: 309,
+            play_count: 2345,
+            artist: artist_2)
