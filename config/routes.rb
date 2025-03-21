@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get "/", to: "welcome#index"
 
   get "/songs", to: "songs#index"
+
+  get "/artists", to: "artists#index"
 end
