@@ -1,0 +1,8 @@
+<h1>Add a New Artist</h1>
+
+<%=  form_with url: "/artists", method: :post, data: { turbo: false } do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.submit "Create Artist" %>
+<% end  %>
