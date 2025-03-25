@@ -1,0 +1,8 @@
+<h1>Artist Index</h1>
+
+<% @artists.each do |artist|  %>
+    <%= artist.name %>
+    <%= button_to "Delete Artist", "/artists/#{artist.id}", method: :delete %>
+<% end  %>
+
+<%= link_to "Add an Artist", "/artists/new" %>
