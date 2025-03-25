@@ -19,6 +19,8 @@ RSpec.describe "New Artist", type: :feature do
 
                 expect(current_path).to eq("/artists")
                 expect(page).to have_content("Dizzy")
+
+                expect(Artist.all.count).to eq(1)
             end
         end
     end
