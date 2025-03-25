@@ -6,11 +6,14 @@ RSpec.describe "Delete an Artist", type: :feature do
 
     visit "/artists"
 
-    expect(page).to have_content("Dizzy")
+    expect(page).to have_content(dizzy.name)
+    expect(Artist.all.count).to eq(1)
 
-    click_on("Delete Artist")
+    click_button("Delete Artist")
 
     expect(current_path).to eq("/artists")
-    expect(page).not_to have_content("Dizzy")
+    expect(page).to_not have_content(dizzy.name)
+    expect(page).to_not have_content("Delete Artist")
+    expect(Artist.all.count).to eq(0)
   end
 end
