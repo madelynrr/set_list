@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get "/songs", to: "songs#index"
 
+  get "/api/v1/songs", to: "api/v1/songs#index"
+
   get "/artists", to: "artists#index"
   get "/artists/new", to: "artists#new"
   post "/artists", to: "artists#create"
