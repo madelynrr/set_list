@@ -63,4 +63,27 @@ describe "Songs API", type: :request do
         expect(response_song[:artist_id]).to be_an(Integer)
         expect(response_song[:artist_id]).to eq(song.artist_id)
     end
+
+    it "can create a new song" do
+        artist = Artist.create(name: "Taylor Swift")
+
+        song_params = {
+            title: "Red",
+            length: 200,
+            play_count: 300,
+            artist_id: artist.id
+        }
+
+        headers = { "CONTENT_TYPE" => "application/json"}
+
+        post "/api/v1/songs", headers: headers, params: JSON.generate(song: song_params)
+
+        created_song = Song.last
+
+        expect(response).to be_successful
+        expect(created_song.title).to eq(song_params[:title])
+        expect(created_song.length).to eq(song_params[:length])
+        expect(created_song.play_count).to eq(song_params[:play_count])
+        expect(created_song.artist_id).to eq(artist.id)
+    end
 end
