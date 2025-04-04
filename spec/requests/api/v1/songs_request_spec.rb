@@ -86,4 +86,20 @@ describe "Songs API", type: :request do
         expect(created_song.play_count).to eq(song_params[:play_count])
         expect(created_song.artist_id).to eq(artist.id)
     end
+
+    it "can update an existing song" do
+        artist = Artist.create(name: "Taylor Swift")
+        original_song = Song.create(title: "Red", length: 220, play_count: 3, artist_id: artist.id)
+
+        song_params = { title: "Red (Taylor's Version)" }
+        headers = { "CONTENT_TYPE" => "application/json"}
+
+        patch "/api/v1/songs/#{original_song.id}", headers: headers, params: JSON.generate(song: song_params)
+
+        updated_song = Song.find(original_song.id)
+
+        expect(response).to be_successful
+        expect(updated_song.title).to_not eq(original_song.title)
+        expect(updated_song.title).to eq(song_params[:title])
+    end
 end
