@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/songs", to: "songs#index"
 
   get "/api/v1/songs", to: "api/v1/songs#index"
+  get "/api/v1/songs/:id", to: "api/v1/songs#show"
 
   get "/artists", to: "artists#index"
   get "/artists/new", to: "artists#new"
