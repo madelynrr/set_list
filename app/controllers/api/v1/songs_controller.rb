@@ -6,4 +6,13 @@ class Api::V1::SongsController < ApplicationController
     def show
         render json: Song.find(params[:id])
     end
+
+    def create
+        render json: Song.create(song_params)
+    end
+
+    private
+    def song_params
+        params.require(:song).permit(:title, :length, :play_count, :artist_id)
+    end
 end
