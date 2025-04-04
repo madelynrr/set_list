@@ -32,4 +32,35 @@ describe "Songs API", type: :request do
             expect(song[:artist_id]).to be_an(Integer)
         end
     end
+
+    it "can get one song by its id" do
+        artist = Artist.create(name: "Taylor Swift")
+        song = Song.create(title: "Peter", length: 220, play_count: 3, artist_id: artist.id)
+
+        get "/api/v1/songs/#{song.id}"
+
+        response_song = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to be_successful
+
+        expect(response_song).to have_key(:id)
+        expect(response_song[:id]).to be_an(Integer)
+        expect(response_song[:id]).to eq(song.id)
+
+        expect(response_song).to have_key(:title)
+        expect(response_song[:title]).to be_an(String)
+        expect(response_song[:title]).to eq(song.title)
+
+        expect(response_song).to have_key(:length)
+        expect(response_song[:length]).to be_an(Integer)
+        expect(response_song[:length]).to eq(song.length)
+
+        expect(response_song).to have_key(:play_count)
+        expect(response_song[:play_count]).to be_an(Integer)
+        expect(response_song[:play_count]).to eq(song.play_count)
+
+        expect(response_song).to have_key(:artist_id)
+        expect(response_song[:artist_id]).to be_an(Integer)
+        expect(response_song[:artist_id]).to eq(song.artist_id)
+    end
 end
