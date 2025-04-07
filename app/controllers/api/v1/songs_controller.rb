@@ -15,6 +15,10 @@ class Api::V1::SongsController < ApplicationController
         render json: Song.update(params[:id], song_params)
     end
 
+    def destroy
+        render json: Song.delete(params[:id])
+    end
+
     private
     def song_params
         params.require(:song).permit(:title, :length, :play_count, :artist_id)
