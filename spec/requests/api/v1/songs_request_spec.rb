@@ -102,4 +102,19 @@ describe "Songs API", type: :request do
         expect(updated_song.title).to_not eq(original_song.title)
         expect(updated_song.title).to eq(song_params[:title])
     end
+
+    it "can destroy a song" do
+        artist = Artist.create(name: "Taylor Swift")
+        song = Song.create(title: "Red", length: 220, play_count: 3, artist_id: artist.id)
+
+        expect(Song.song_count).to eq(1)
+
+        delete "/api/v1/songs/#{song.id}"
+
+        expect(response).to be_successful
+        expect(Song.song_count).to eq(0)
+        expect{
+            Song.find(song.id)
+        }.to raise_error(ActiveRecord::RecordNotFound)
+    end
 end
