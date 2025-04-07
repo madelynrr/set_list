@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "/api/v1/songs/:id", to: "api/v1/songs#show"
   post "/api/v1/songs", to: "api/v1/songs#create"
   patch "/api/v1/songs/:id", to: "api/v1/songs#update"
+  delete "/api/v1/songs/:id", to: "api/v1/songs#destroy"
 
   get "/artists", to: "artists#index"
   get "/artists/new", to: "artists#new"
