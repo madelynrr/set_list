@@ -26,7 +26,7 @@ describe "Songs API V2", type: :request do
             expect(song[:length]).to be_an(Integer)
 
             expect(song).to have_key(:popularity)
-            expect(song[:popularity]).to be_an(Integer)
+            expect(song[:popularity]).to be_an(String)
 
             expect(song).to have_key(:artist_id)
             expect(song[:artist_id]).to be_an(Integer)
